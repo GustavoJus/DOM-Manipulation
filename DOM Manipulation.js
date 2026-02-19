@@ -3,16 +3,8 @@
 function showFilter() {
   const filterForm = document.getElementById("filterContent");
   const newForm = document.getElementById("newContent");
-  
-  newForm.style.display = "none";
-  
-  const isHidden =
-    getComputedStyle(filterForm).display === "none";
 
-  filterForm.style.display = isHidden ? "block" : "none";
-}
-
-  // Filter 
+  // Show filter
   filterForm.style.display = "block";
   newForm.style.display = "none";
 }
@@ -21,7 +13,7 @@ function showAddNew() {
   const filterForm = document.getElementById("filterContent");
   const newForm = document.getElementById("newContent");
 
-  // Filter 2
+  // Show add-new, hide filter
   newForm.style.display = "flex";
   filterForm.style.display = "none";
 }
@@ -69,11 +61,11 @@ function addNewArticle() {
     typeClass = "recipe";
     markerText = "Recipe";
   } else if (lifeRadio.checked) {
-    typeClass = "update";    
-    markerText = "Update";    
+    typeClass = "update";     
+    markerText = "Update";  
   }
 
-  // Validation
+  // Basic validation
   if (!title) {
     alert("Please enter a Title.");
     titleEl.focus();
@@ -89,9 +81,12 @@ function addNewArticle() {
     return;
   }
 
+  // Unique
   const list = document.getElementById("articleList");
   const nextIdNum = list.querySelectorAll("article").length + 1;
   const newId = "a" + nextIdNum;
+
+  // Article mode
   const article = document.createElement("article");
   article.className = typeClass;
   article.id = newId;
@@ -116,9 +111,13 @@ function addNewArticle() {
   article.appendChild(h2);
   article.appendChild(pText);
   article.appendChild(pLink);
+
   list.prepend(article);
+
+  // Re-apply current filter 
   filterArticles();
 
+  // Reset form inputs
   titleEl.value = "";
   textEl.value = "";
   opinionRadio.checked = false;
@@ -131,5 +130,3 @@ function addNewArticle() {
 document.addEventListener("DOMContentLoaded", () => {
   filterArticles();
 });
-
-
