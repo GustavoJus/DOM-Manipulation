@@ -2,12 +2,14 @@
 
 function showFilter() {
   const filterForm = document.getElementById("filterContent");
+  const newForm = document.getElementById("newContent");
+  
+  newForm.style.display = "none";
+  
+  const isHidden =
+    getComputedStyle(filterForm).display === "none";
 
-  if (filterForm.style.display === "none" || filterForm.style.display === "") {
-    filterForm.style.display = "block";
-  } else {
-    filterForm.style.display = "none";
-  }
+  filterForm.style.display = isHidden ? "block" : "none";
 }
 
   // Filter 
@@ -129,4 +131,5 @@ function addNewArticle() {
 document.addEventListener("DOMContentLoaded", () => {
   filterArticles();
 });
+
 
