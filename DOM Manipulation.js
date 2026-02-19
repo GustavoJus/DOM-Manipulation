@@ -2,7 +2,13 @@
 
 function showFilter() {
   const filterForm = document.getElementById("filterContent");
-  const newForm = document.getElementById("newContent");
+
+  if (filterForm.style.display === "none" || filterForm.style.display === "") {
+    filterForm.style.display = "block";
+  } else {
+    filterForm.style.display = "none";
+  }
+}
 
   // Filter 
   filterForm.style.display = "block";
@@ -123,3 +129,4 @@ function addNewArticle() {
 document.addEventListener("DOMContentLoaded", () => {
   filterArticles();
 });
+
